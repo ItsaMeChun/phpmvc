@@ -1,0 +1,20 @@
+{
+    "name": "vendor/project-mvc",
+    "description": "it's my last project at the school, i think",
+    "license": "Long",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\ProjectMvc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Long",
+            "email": "91193095+ItsaMeChun@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "pecee/simple-router": "dev-master"
+    }
+}
