@@ -8,7 +8,6 @@ class accountModel
     public $email;
     public $hashPass;
     public $role;
-    public $ro;
     public $verify;
     private $db;
 
