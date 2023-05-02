@@ -101,8 +101,6 @@ class userController
                 echo '<meta http-equiv="refresh" content="0;url=notfound">'; // we're going to brazil
             }
         } else {
-            // i don't know how to fix this so ok
-            // echo "<script language='javascript'>alert('already');</script>";
             return false;
         }
     }

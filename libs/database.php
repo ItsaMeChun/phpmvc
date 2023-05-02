@@ -9,10 +9,15 @@ use Dotenv\Dotenv;
 <?php
   class Database
   {
-      public $host = DB_HOST;
-      public $user = DB_USER;
-      public $pass = DB_PASS;
-      public $dbname = DB_NAME;
+      public $host = "localhost" ;
+      public $user = "root" ;
+      public $pass ="";
+      public $dbname = "nha";
+
+    //   public $host = DB_HOST;
+    //   public $user = DB_USER;
+    //   public $pass = DB_PASS;
+    //   public $dbname = DB_NAME;
       public $APP_MAIL;
       public $APP_PASS;
       public $SECRET;

@@ -27,6 +27,16 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     <div id="search-results"></div>
   </div>
   <div class="header__action">
+    <button class="btn btn--cart header__action__btn">
+      <a href="#">
+        Lịch Sử
+      </a>
+    </button>
+    <button class="btn btn--cart header__action__btn">
+      <a href="#">
+        Phòng Thuê
+      </a>
+    </button>
     <?php if (isset($_SESSION['user_name'])) { ?>
       <button class="btn btn--cart header__action__btn">
       <a href="?login=logout">

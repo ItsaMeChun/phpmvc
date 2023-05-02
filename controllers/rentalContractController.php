@@ -39,6 +39,13 @@ class contractInfo
             </div>
 
             <div class="form-group">
+              <label for="password" class="form-label">Số Tháng Thuê</label>
+              <input id="month" name="month" type="number" placeholder="VD:1" value="1" min="1" max="24" class="form-control" oninput="(!validity.rangeOverflow||(value=10)) && (!validity.rangeUnderflow||(value=1)) &&
+                (!validity.stepMismatch||(value=parseInt(this.value)));" required autofocus>
+              <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
                 <label for="checkin-date" class="form-label">Ngày lập hóa đơn</label>
                 <input id="checkin-date" name="checkin-date" type="date" class="form-control" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>" readonly>
                 <span class="form-message"></span>
@@ -60,6 +67,7 @@ class contractInfo
           </form>
         </div>
     </div>
+
         <?php
     }
 }
@@ -78,19 +86,42 @@ class contractViews
             $method = $_POST['method'];
             $room = $dataRoom['MaPhongTro'];
             $chutro = $dataRoom['MaChuTro'];
+            $month = $_POST['month'];
+      
             $khachtro = $_SESSION['user_idNum'];
             $sdt = $_POST['sdt'];
             $price = $_POST['price'];
             $checkindate = $_POST['checkin-date'];
-            var_dump($khachtro);
+            // var_dump($khachtro);
+            $id=$room;
             $contractModel = new contractModel();
-            $result = $contractModel->createContract($room, $chutro, $khachtro, $price, $checkindate, $method, $sdt);
-            if (!$result) {
-                return false;
+            if(!$_SESSION['user_idNum']){
+              echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . '">';  
+              return;
+            }      
+            //** Mới thêm vào */
+            //** kiểm tra có tồn tại phòng chưa */
+            $check = $contractModel->foundContract($id);
+            if ($check) {
+                $errorMessage1 = 'Phòng đã đã được đặt';
+                echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '{$errorMessage1}';</script>";
+
+                return;
             }
-            $message = 'Đặt thành công';
-            echo "<script>alert('{$message}')</script>";
-            echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . '">';
+              $result = $contractModel->createContract($room, $chutro, $khachtro, $price, $checkindate,$month, $method, $sdt);
+              if (!$result) {
+                  return false;
+              }
+
+              $message = 'Đặt thành công';
+              echo "<script>alert('{$message}')</script>";
+              echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . '">';                
+
+
+        } else {
+          // i don't know how to fix this so ok
+          // echo "<script language='javascript'>alert('already');</script>";
+          return false;
         }
     }
 }
