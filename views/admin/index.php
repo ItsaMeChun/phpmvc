@@ -1,10 +1,23 @@
+<?php 
+  header("Cache-Control: no-cache,must-revalidate");
+  header("Pragma: no-cache");
+  header("Cache-Control: max-age=2592000");
+  session_start();
+?>
+<?php
+require_once __DIR__.'/../../vendor/autoload.php';
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Admin</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="assets/boxicons-2.0.7/css/boxicons.min.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -334,7 +347,7 @@
                 <div class="job">Web designer</div>
             </div>
             </div>
-            <a href="">
+            <a href="<?php echo $_ENV['URL']; ?>">
                 <i class='bx bx-log-out' id="log_out" ></i>
             </a>
         </li>
