@@ -16,7 +16,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
   </div>
   <h4 class="header__logo">
   <a href="<?php echo isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0 ? $_ENV['URL'] . 'homepage' : $_ENV['URL']; ?>">
-    L<span>ONG</span> N<span>HONG</span>
+    S<span>TAY</span> S<span>CORE</span>
   </a>
   </h4>
   <div class="header__search">
@@ -27,7 +27,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     <div id="search-results"></div>
   </div>
   <div class="header__action">
-    <button class="btn btn--cart header__action__btn">
+    <!-- <button class="btn btn--cart header__action__btn">
       <a href="#">
         Lịch Sử
       </a>
@@ -36,7 +36,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
       <a href="#">
         Phòng Thuê
       </a>
-    </button>
+    </button> -->
     <?php if (isset($_SESSION['user_name'])) { ?>
       <button class="btn btn--cart header__action__btn">
       <a href="?login=logout">
@@ -50,8 +50,12 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
       </a> -->
     <?php } ?>
     <button class="btn btn--primary header__action__btn">
-      <?php if (isset($_SESSION['user_name'])) { ?>
-        <a href="user_info">
+      <?php if (isset($_SESSION['user_name'], $_SESSION['user_role']) && $_SESSION['user_role'] == 0) { ?>
+        <a href="mycontract?idChuTro=<?php echo $_SESSION['user_idNum'] ?>">
+          <i class="bx bxs-user"></i> <?php echo $_SESSION['user_name']; ?>
+        </a>
+      <?php } elseif (isset($_SESSION['user_name'], $_SESSION['user_role']) && $_SESSION['user_role'] == 1) { ?>
+        <a href="#">
           <i class="bx bxs-user"></i> <?php echo $_SESSION['user_name']; ?>
         </a>
       <?php } else { ?>
