@@ -12,32 +12,35 @@ class mycontractView
                 <div class="container">
                 <table class="table" style="margin:auto;outline:auto">
                     <tr>
-                        <th style="padding: 30px; outline: auto">
+                        <th style="padding: 30px; width:5px; outline: auto">
                             Phòng trọ
                         </th>
-                        <th style="padding: 30px; outline: auto">
+                        <!-- <th style="padding: 30px; width:5px; outline: auto">
                             Chủ trọ
-                        </th>
-                        <th style="padding: 30px; outline: auto">
+                        </th> -->
+                        <th style="padding: 30px; width:5px; outline: auto">
                             Khách trọ
                         </th>
                         <th style="padding: 30px; outline: auto">
-                            Thành tiền
+                            Thành tiền (VNĐ)
                         </th>
-                        <th style="padding: 30px; outline: auto">
+                        <th style="padding: 30px; width:5px; outline: auto">
                             Số tháng thuê
                         </th>
-                        <th style="padding: 30px; outline: auto">
+                        <th style="padding: 30px; width:auto; outline: auto;">
                             Ngày lập hóa đơn
                         </th>
-                        <th style="padding: 30px; outline: auto">
+                        <th style="padding: 30px; width:auto; outline: auto">
                             Ngày nhận phòng
                         </th>
-                        <th style="padding: 30px; outline: auto">
+                        <th style="padding: 30px; width:auto; outline: auto">
                             Ngày trả phòng
                         </th>
-                        <th style="padding: 30px; outline: auto">
+                        <th style="padding: 30px; width: 5px; outline: auto">
                             Sđt
+                        </th>
+                        <th style="padding: 30px; width: 5px; outline: auto">
+                            Thanh toán bằng
                         </th>
                         <th style="padding: 30px; outline: auto">
                             Chức năng
@@ -48,31 +51,34 @@ class mycontractView
                         foreach ($data as $item) { ?>
                     <tr>
                         <th style="padding: 30px; outline: auto">
-                            <?php echo $item['MaPhongTro']; ?>
+                            <?php echo $item['SoPhong']; ?>
+                        </th>
+                        <!-- <th style="padding: 30px; outline: auto">
+                            <?php echo $item['HostName']; ?>
+                        </th> -->
+                        <th style="padding: 30px; outline: auto">
+                            <?php echo $item['GuestName']; ?>
                         </th>
                         <th style="padding: 30px; outline: auto">
-                            <?php echo $item['MaChuTro']; ?>
-                        </th>
-                        <th style="padding: 30px; outline: auto">
-                            <?php echo $item['MaKhachTro']; ?>
-                        </th>
-                        <th style="padding: 30px; outline: auto">
-                            <?php echo $item['thanhtien']; ?>
+                            <?php echo substr($item['thanhtien'],0,-4); ?>
                         </th>
                         <th style="padding: 30px; outline: auto">
                             <?php echo $item['sothangthue']; ?>
                         </th>
                         <th style="padding: 30px; outline: auto">
-                            <?php echo $item['ngaylaphoadon']; ?>
+                            <?php echo date('d-m-Y', strtotime($item['ngaylaphoadon'])); ?>
                         </th>
                         <th style="padding: 30px; outline: auto">
-                            <?php echo $item['ngaynhanphong']; ?>
+                            <?php echo date('d-m-Y', strtotime($item['ngaynhanphong'])); ?>
                         </th>
                         <th style="padding: 30px; outline: auto">
-                            <?php echo $item['ngaytraphong']; ?>
+                            <?php echo date('d-m-Y', strtotime($item['ngaytraphong'])); ?>
                         </th>
                         <th style="padding: 30px; outline: auto">
                             <?php echo $item['sdt']; ?>
+                        </th>
+                        <th style="padding: 30px; outline: auto">
+                            <?php echo $item['tenphuongthuc']; ?>
                         </th>
                         <th style="padding: 30px; outline: auto">
                             <a href="<?php echo $_ENV['URL']; ?>#">
@@ -103,6 +109,9 @@ class mycontractController
         $userId = $_SESSION['user_idNum'];
         $result = $contractModel->myContract($userId);
         $motel = new mycontractView();
+        // while ($row = $result) {
+        //     $dataKhachTro = $accountModel->getKhachTro($row['MaKhachTro']);
+        // }
         $motel->render($result);
     }
 }

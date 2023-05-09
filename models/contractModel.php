@@ -48,7 +48,13 @@ class contractModel
 
     public function myContract($idUser)
     {
-        $query = "SELECT * FROM `hopdongthue` WHERE MaChuTro = $idUser";
+        $query = "SELECT hopdongthue.*, khachtro.Ten AS GuestName, chutro.Ten AS HostName, phongtro.SoPhong, phuongthucthanhtoan.tenphuongthuc
+        FROM hopdongthue
+        JOIN khachtro ON hopdongthue.MaKhachTro = khachtro.MaKhachTro
+        JOIN chutro ON hopdongthue.MaChuTro = chutro.MaChuTro
+        JOIN phongtro ON hopdongthue.MaPhongTro = phongtro.MaPhongTro
+        JOIN phuongthucthanhtoan ON hopdongthue.MaPhuongThuc = phuongthucthanhtoan.MaPhuongThuc
+        WHERE hopdongthue.MaChuTro = $idUser AND hopdongthue.visible = 1";
         $result = $this->db->select($query);
         if (!$result) {
             return false;
@@ -61,7 +67,7 @@ class contractModel
     }
 
     public function findContractById($id) {
-        $query = "SELECT * FROM `hopdongthue` WHERE id = $id";
+        $query = "SELECT * FROM hopdongthue WHERE id = '$id'";
         $result = $this->db->select($query);
         if(!$result) {
             return false;
