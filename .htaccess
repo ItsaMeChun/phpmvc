@@ -16,17 +16,17 @@ RewriteRule ^admin/(.*)$ /phpmvc/views/admin/$1 [L]
 RewriteCond %{REQUEST_URI} ^/phpmvc/api [NC]
 RewriteRule ^api/(.*)$ /phpmvc/views/api/$1.php [L]
 
-# Rewrite rules for all other requests
-RewriteCond %{REQUEST_URI} !^/phpmvc/(admin|api) [NC]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /phpmvc/views/$1.php [L,QSA]
-
 # Rewrite rule for admin section requests
 RewriteCond %{REQUEST_URI} ^/phpmvc/admin [NC]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^admin/(.*)$ /phpmvc/views/admin/$1.php [L,QSA]
+
+# Rewrite rule for admin section requests
+RewriteCond %{REQUEST_URI} ^/phpmvc/admin [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^admin/([^/]+)/?$ /phpmvc/views/admin/$1.php [L,QSA]
 
 # Custom error pages
 ErrorDocument 400 /phpmvc/errors/400.php
