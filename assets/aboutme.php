@@ -102,8 +102,24 @@
     </section>
     <h3>Just random song to keep you entertained</h3><br>
     <div class="video-container">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/Kkgp1-fHn6Y" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <iframe id="randomVideo" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        var videoLinks = [
+          'https://www.youtube.com/embed/Kkgp1-fHn6Y',
+          'https://www.youtube.com/embed/omS6RswPv7I',
+          'https://www.youtube.com/embed/OWOy5UKlIns',
+          'https://www.youtube.com/embed/YjPMJf2Uhu0'
+        ];
+
+        var randomIndex = Math.floor(Math.random() * videoLinks.length);
+        var randomVideoLink = videoLinks[randomIndex];
+        var randomVideoFrame = document.getElementById('randomVideo');
+        randomVideoFrame.src = randomVideoLink;
+      });
+    </script>
   </main>
 </body>
 </html>
