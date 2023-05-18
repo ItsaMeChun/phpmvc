@@ -78,10 +78,10 @@
         </li> -->
     <li class="profile">
         <div class="profile-details">
-        <!--<img src="profile.jpg" alt="profileImg">-->
+        <img src="https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/1684378867662.jpg?alt=media&token=5b45c1ba-1dd9-40bc-a836-4676c834bba2" alt="profileImg">
         <div class="name_job">
-            <div class="name">Lorem Ipsum</div>
-            <div class="job">Web designer</div>
+            <!-- <div class="name">Lorem Ipsum</div>
+            <div class="job">Web designer</div> -->
         </div>
         </div>
         <a href="<?php echo $_ENV['URL']; ?>">

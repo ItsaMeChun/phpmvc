@@ -20,17 +20,17 @@
         </ul>
         <ul class="footer__container__header__block">
           <h2>Về Stay<span>Score</span></h2>
-          <li><a href="">Giới thiệu</a></li>
+          <li><a href="assets/aboutme.php">Giới thiệu</a></li>
           <!-- <li><a href="">Cơ hội làm việc</a></li>
           <li><a href="">Đối tác</a></li> -->
         </ul>
-        <ul class="footer__container__header__block">
+        <!-- <ul class="footer__container__header__block">
           <h2>Hỗ Trợ</h2>
           <li><a href="">Liên hệ</a></li>
           <li><a href="">Bảo mật</a></li>
           <li><a href="">Điều khoản</a></li>
           <li><a href="">Khiếu nại</a></li>
-        </ul>
+        </ul> -->
         <ul class="footer__container__header__block">
           <h2>CÔNG TY CỔ PHẦN Stay<span>Score</span></h2>
           <li>
