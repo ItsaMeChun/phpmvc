@@ -32,7 +32,7 @@ class roomView
                 <span>Giá</span>  <?php echo number_format($row['GiaThue'], 0, ',', '.'); ?> VNĐ
               </p>
               <p style="padding-top: 1rem; margin-bottom: 1rem">
-                  Diện tích <span><?php echo $row['DienTich']; ?></span>
+                  Diện tích <span><?php echo $row['DienTich'] . ' m²'; ?></span>
               </p>
               <p style="padding-top: 1rem; margin-bottom: 1rem">
                   Tình trạng <span><?php

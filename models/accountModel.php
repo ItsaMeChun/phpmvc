@@ -16,6 +16,38 @@ class accountModel
         $this->db = new Database();
     }
 
+    public function getAllChuTro()
+    {
+        $query = 'SELECT * FROM account right join chutro on account.MaAccount = chutro.MaAccount';
+        $result = $this->db->select($query);
+        if (!$result) {
+            return;
+        }
+
+        $allUser = [];
+        while ($row = $result->fetch_assoc()) {
+            $allUser[] = $row;
+        }
+
+        return $allUser;
+    }
+
+    public function getAllUser()
+    {
+        $query = 'SELECT * FROM account right join khachtro on account.MaAccount = khachtro.MaAccount';
+        $result = $this->db->select($query);
+        if (!$result) {
+            return;
+        }
+
+        $allUser = [];
+        while ($row = $result->fetch_assoc()) {
+            $allUser[] = $row;
+        }
+
+        return $allUser;
+    }
+
     public function foundUser($email)
     {
         $query = "SELECT * FROM account where Email = '{$email}' LIMIT 1";

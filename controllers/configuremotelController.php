@@ -7,7 +7,7 @@ class configureMotel
     {
         foreach ($details as $row) {
             ?>
-       <div class="container">
+      <div class="container">
         <div class="center">
           <form action="" method="POST" class="form" id="form-1">
             <h3 class="heading">Chỉnh sửa nhà trọ</h3>
@@ -23,15 +23,14 @@ class configureMotel
 
             <div class="form-group">
               <label for="password" class="form-label">Mô tả nhà trọ</label>
-              <!-- <input style="resize:none;" id="password" name="description" placeholder="VD: Sạch, có nước nóng" class="form-control" value="" required autofocus> -->
-              <textarea style="resize:none;" id="password" name="description" placeholder="VD: Sạch, có nước nóng" class="form-control" required autofocus><?php echo $row['MoTaNhaTro']; ?></textarea>
+              <textarea name='des' required autofocus><?php echo $row['MoTaNhaTro']; ?></textarea><br>
               <span class="form-message"></span>
             </div>
             <button type="submit" name="submit" class="form-submit">Chỉnh sửa</button>
           </form>
         </div>
       </div>
-              <?php }?>
+      <?php }?>
 <?php
     }
 }
@@ -49,7 +48,7 @@ class configure
             $oldAdd = '';
             $oldDes = '';
             $newAdd = $_POST['address'];
-            $newDes = $_POST['description'];
+            $newDes = $_POST['des'];
             foreach ($details as $row) {
                 $oldAdd = $row['DiaChi'];
                 $oldDes = $row['MoTaNhaTro'];

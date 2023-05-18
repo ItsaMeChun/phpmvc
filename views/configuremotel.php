@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="assets/boxicons-2.0.7/css/boxicons.min.css">
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/user.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.18.0/ckeditor.js" integrity="sha512-woYV6V3QV/oH8txWu19WqPPEtGu+dXM87N9YXP6ocsbCAH1Au9WDZ15cnk62n6/tVOmOo0rIYwx05raKdA4qyQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <title>Chỉnh sửa nhà trọ</title>
 </head>
 <body>
@@ -35,4 +36,9 @@
     include '../components/mommom/Footer.php'
   ?>
   <script type="text/javascript" src="assets/scripts/app1.js"></script>
+  <script type="text/javascript">
+        CKEDITOR.replace('des',{
+            height: "360px"
+        });
+    </script>
 </body>

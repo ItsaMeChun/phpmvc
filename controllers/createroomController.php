@@ -20,7 +20,7 @@ class createMotelController
                     </div>
 
                     <div class="form-group">
-                    <label for="email" class="form-label">Diện tích (m2)</label>
+                    <label for="email" class="form-label">Diện tích (m²)</label>
                     <input id="email" name="size" type="text" placeholder="VD: 40" class="form-control" required autofocus>
                     <span class="form-message"></span>
                     </div>

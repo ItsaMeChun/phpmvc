@@ -1,3 +1,9 @@
+<?php 
+  header("Cache-Control: no-cache,must-revalidate");
+  header("Pragma: no-cache");
+  header("Cache-Control: max-age=2592000");
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,6 +66,19 @@
     .table_chart {width: 100%; display: flex; text-align: center; padding: 10px;}
     .box {flex: 1;border: 2px solid #000; margin: 10px; height: 100px; border-radius: 10px;display:flex;}
     .box>p {height: -webkit-fill-available;display: block;width: -webkit-fill-available;position: relative;text-align: center;top: 35%;}
+        table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
 </style>
 <body>
     <?php
@@ -75,23 +94,27 @@
         $end=$contract->endroomContract();
     ?>
     <div class='table_chart'> 
-        <div class="box" style="background: #ffa03d;"><p>Tổng tiền: <?php 
+        <div class="box" style="background: #ffa03d;"><p>Tổng tiền: <?php
             foreach($total as $row){
                 echo number_format($row['Tong'],0,",",".");
             }
         ?> VNĐ</p></div>
-        <div class="box" style="background: #478fff;"><p>Đặt phòng: <?php             
+        <div class="box" style="background: #478fff;"><p>Đặt phòng: <?php
             foreach($book as $row){
                 echo number_format($row['Dat'],0,",",".");
             }; ?></p></div>
-        <div class="box" style="background: #00ff90;"><p>Hủy phòng: <?php 
+        <div class="box" style="background: #00ff90;"><p>Hủy phòng: <?php
             foreach($end as $row){
                 echo number_format($row['Huy'],0,",",".");
             }?>
         </p></div>
     </div>
     <div class='chartdiv'>
-   
+    <?php
+        include_once(__DIR__ .'/../../controllers/admin/allroomController.php');
+        $roomController = new allroomController();
+        $roomController();
+    ?>
     </div>
     <!-- <div id="chart-container">
         <canvas id="graph"></canvas>

@@ -12,35 +12,28 @@
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
-    <li>
+    <!-- <li>
         <i class='bx bx-search' ></i>
         <input type="text" placeholder="Search...">
         <span class="tooltip">Search</span>
-    </li>
+    </li> -->
     <li>
     <script>
     window.env = {
         URL: "<?php echo base64_encode($_ENV['ADMIN_URL']); ?>",
     }
-    function direct() {
+    function directToURL(url) {
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = atob(env.URL);
-
-        document.body.appendChild(form);
-        form.submit();
-    }
-    function directToUser() {
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = atob(env.URL) + "landlords.php";
+        if(!url) url = '';
+        form.action = atob(env.URL) + url;
 
         document.body.appendChild(form);
         form.submit();
     }
     </script>
 
-    <a href="#" onclick="direct();">
+    <a href="#" onclick="directToURL();">
         <i class='bx bx-grid-alt'></i>
         <span class="links_name">Dashboard</span>
     </a>
@@ -48,38 +41,46 @@
 
     </li>
     <li>
-    <a href="#" onclick="directToUser()">
+    <a href="#" onclick="directToURL('user.php')">
         <i class='bx bx-user' ></i>
         <span class="links_name">User</span>
     </a>
     <span class="tooltip">User</span>
     </li>
+
     <li>
-    <a href="{{ route('admin.revenue') }}">
-        <i class='bx bx-stats' ></i>
-        <span class="links_name">Revenue</span>
-    </a>
-    <span class="tooltip">Revenue</span>
-    </li>
-    <li>
-    <a href="{{ route('admin.order') }}">
-        <i class='bx bx-cart-alt' ></i>
-        <span class="links_name">Order</span>
-    </a>
-    <span class="tooltip">Order</span>
-    </li>
-    <li>
-    <a href="#">
-        <i class='bx bx-cog' ></i>
-        <span class="links_name">Setting</span>
-    </a>
-    <span class="tooltip">Setting</span>
-    </li>
+        <a href="#" onclick="directToURL('landlords.php')">
+            <i class='bx bx-body' ></i>
+            <span class="links_name">Landlord</span>
+        </a>
+        <span class="tooltip">Room</span>
+        </li>
+        <li>
+        <a href="#" onclick="directToURL('room.php')">
+            <i class='bx bx-stats' ></i>
+            <span class="links_name">Room</span>
+        </a>
+        <span class="tooltip">Revenue</span>
+        </li>
+        <li>
+        <a href="#" onclick="directToURL('bill.php');">
+            <i class='bx bx-cart-alt' ></i>
+            <span class="links_name">Bill</span>
+        </a>
+        <span class="tooltip">Bill</span>
+        </li>
+        <!-- <li>
+        <a href="#">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Setting</span>
+        </a>
+        <span class="tooltip">Setting</span>
+        </li> -->
     <li class="profile">
         <div class="profile-details">
         <!--<img src="profile.jpg" alt="profileImg">-->
         <div class="name_job">
-            <div class="name">Prem Shahi</div>
+            <div class="name">Lorem Ipsum</div>
             <div class="job">Web designer</div>
         </div>
         </div>

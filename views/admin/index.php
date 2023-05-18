@@ -1,4 +1,9 @@
-
+<?php 
+  header("Cache-Control: no-cache,must-revalidate");
+  header("Pragma: no-cache");
+  header("Cache-Control: max-age=2592000");
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -153,7 +158,6 @@
                                 hoverBorderColor: '#42f5ef',
                                 // data: total,
                                 data: formStatusVar,
-                                
                             }
                         ]
                     };
@@ -170,13 +174,11 @@
         $.post("../charjs.php",
                 function (data){
                     console.log(data);
-                    
                     var total = []; 
                 var formStatusVar = [];
                     for (var i in data) {
                         total.push(data[i].idMonth);
                         formStatusVar.push(data[i].total);
-                        
                     }
 
                     var options = {
@@ -211,7 +213,6 @@
                                 hoverBorderColor: '#42f5ef',
                                 // data: total,
                                 data: formStatusVar,
-                                
                             }
                         ]
                     };

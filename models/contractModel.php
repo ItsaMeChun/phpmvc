@@ -172,4 +172,26 @@ class contractModel
 
         return $motels;
     }
+
+    public function allhistoryContract()
+    {
+        $query = 'SELECT a.*, e.Email From hopdongthue as a 
+        left join phongtro as b on a.MaPhongTro = b.MaPhongTro 
+        left join khachtro as c on a.MaKhachTro = c.MaKhachTro 
+        left join nhatro as d on d.MaNhaTro = b.MaNhaTro
+        LEFT join account as e on e.MaAccount = c.MaAccount
+        and not CURDATE()>DATE_ADD(a.ngaytraphong, INTERVAL 1 DAY)';
+
+        $result = $this->db->select($query);
+        if (!$result) {
+            // echo '<div class="container" ><p style="margin:30px 0">Hiện tại không có phòng nào được dặt</p></div>';
+            return;
+        }
+        $allhistorybill = [];
+        while ($row = $result->fetch_assoc()) {
+            $historybill[] = $row;
+        }
+
+        return $allhistorybill;
+    }
 }

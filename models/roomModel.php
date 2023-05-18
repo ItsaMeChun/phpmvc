@@ -19,6 +19,36 @@ class roomModel
         $this->db = new Database();
     }
 
+    public function getAdminRoom()
+    {
+        $query = 'SELECT DISTINCT phongtro.*, picture.url, nhatro.DiaChi, account.Email
+        FROM phongtro
+        LEFT JOIN nhatro ON nhatro.MaNhaTro = phongtro.MaNhaTro
+        Left join chutro on  nhatro.MaChuTro =chutro.MaChuTro
+        Left join account on account.MaAccount = chutro.MaAccount
+        LEFT JOIN hopdongthue ON hopdongthue.MaPhongTro = phongtro.MaPhongTro
+        LEFT JOIN (
+            SELECT MaPhongTro, url
+            FROM (
+                SELECT MaPhongTro, url
+                FROM picture
+                ORDER BY RAND()
+            ) randomized_picture
+            GROUP BY MaPhongTro
+        ) picture ON phongtro.MaPhongTro = picture.MaPhongTro';
+        $result = $this->db->select($query);
+        if (!$result) {
+            echo 'Database Error: ' . $this->db->error;
+            exit;
+        }
+        $rooms = [];
+        while ($row = $result->fetch_assoc()) {
+            $rooms[] = $row;
+        }
+
+        return $rooms;
+    }
+
     public function getAllRooms($page)
     {
         $limit = $this->limitPage; // Number of rooms per page

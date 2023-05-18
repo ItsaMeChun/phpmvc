@@ -34,11 +34,11 @@ class detailsView
                 </h3>
                 <h4 class="details__product__right__price">
                   <span>Giá thuê: </span>
-                  <?php echo $row['GiaThue']; ?>
+                  <?php echo number_format($row['GiaThue'], 0, ',', '.'); ?> VNĐ
                 </h4>
                 <h4 class="details__product__right__price">
                   <span>Diện tích: </span>
-                  <?php echo $row['DienTich']; ?>
+                  <?php echo $row['DienTich'] . ' m²'; ?>
                 </h4>
                 <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0) { ?>
                   <a href="<?php echo $_ENV['URL']; ?>configureroom?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
