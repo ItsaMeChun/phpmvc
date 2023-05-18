@@ -11,9 +11,7 @@ class roomView
     public function render($rooms)
     {?>
             <div class="product__container">
-            <?php
-            foreach ($rooms as $row) {
-                ?>
+            <?php foreach ($rooms as $row) {?>
             <div class="product__item">
               <div class="product__item__img">
                 <a href="<?php echo $_ENV['URL']; ?>indetails?idPhongTro=<?php echo $row['MaPhongTro']; ?>&idNhaTro=<?php echo $row['MaNhaTro']; ?>">
@@ -21,12 +19,12 @@ class roomView
                 </a>
               </div>
               <h4 class="product__item__title">
-              <a href="#">
-                  Nhà Trọ <?php echo $row['DiaChi']; ?>
+              <a href="<?php echo $_ENV['URL']; ?>indetails?idPhongTro=<?php echo $row['MaPhongTro']; ?>&idNhaTro=<?php echo $row['MaNhaTro']; ?>">
+                  <!-- Nhà Trọ <?php echo $row['DiaChi']; ?> -->
               </a>
               </h4>
               <h4 class="product__item__title">
-              <a href="#">
+              <a href="<?php echo $_ENV['URL']; ?>indetails?idPhongTro=<?php echo $row['MaPhongTro']; ?>&idNhaTro=<?php echo $row['MaNhaTro']; ?>">
                   Phòng Số <?php echo $row['SoPhong']; ?>
                 </a>
               </h4>
@@ -39,7 +37,7 @@ class roomView
               <p style="padding-top: 1rem; margin-bottom: 1rem">
                   Tình trạng <span><?php
                     $db = new Database();
-                $query = "SELECT * From hopdongthue where 
+                $query = "SELECT * From hopdongthue where
                     not visible = 2 and not CURDATE()>DATE_ADD(ngaytraphong, INTERVAL 1 DAY) 
                     and MaPhongTro={$row['MaPhongTro']} ORDER BY id DESC LIMIT 1";
                 $res = $db->select($query);
@@ -48,7 +46,6 @@ class roomView
                 } else {
                     echo 'hết phòng';
                 }
-
                 ?></span>
               </p>
               <a href="<?php echo $_ENV['URL']; ?>indetails?idPhongTro=<?php echo $row['MaPhongTro']; ?>&idNhaTro=<?php echo $row['MaNhaTro']; ?>" class="product__item__action">
@@ -75,7 +72,6 @@ class roomController
         $roomModel = new roomModel();
         $rooms = $roomModel->getAllRooms();
         $roomView = new roomView();
-
         $roomView->render($rooms);
     }
 }

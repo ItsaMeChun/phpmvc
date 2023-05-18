@@ -24,19 +24,22 @@ class roomModel
 
         // pass number of records to
         // $pages->set_total($rowCount);
-        $query = 'SELECT phongtro.*, picture.url, nhatro.DiaChi
-              FROM phongtro
-              Left join nhatro on nhatro.MaNhaTro = phongtro.MaNhaTro
-              Left join hopdongthue on hopdongthue.MaPhongTro =phongtro.MaPhongTro
-              LEFT JOIN (
-              SELECT MaPhongTro, url
-              FROM picture
-              ORDER BY RAND()
-              LIMIT 1 ) picture
-              ON phongtro.MaPhongTro = picture.MaPhongTro ';
+        $query = 'SELECT DISTINCT phongtro.*, picture.url, nhatro.DiaChi
+                FROM phongtro
+                LEFT JOIN nhatro ON nhatro.MaNhaTro = phongtro.MaNhaTro
+                LEFT JOIN hopdongthue ON hopdongthue.MaPhongTro = phongtro.MaPhongTro
+                LEFT JOIN (
+                    SELECT MaPhongTro, url
+                    FROM (
+                        SELECT MaPhongTro, url
+                        FROM picture
+                        ORDER BY RAND()
+                    ) randomized_picture
+                    GROUP BY MaPhongTro
+                ) picture ON phongtro.MaPhongTro = picture.MaPhongTro';
         $result = $this->db->select($query);
         if (!$result) {
-            echo 'Database Error: ' . $this->db->error;
+            // echo 'Database Error: ' . $this->db->error;
             exit;
         }
         $rooms = [];
