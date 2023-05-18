@@ -20,7 +20,6 @@ class evallandlordView
                 <tr>
                 <th style="width: 60%; text-align: center;" >Nội Dung</th>
                 <th style="text-align: center;">Điểm Đánh Giá</th>
-                
                 </tr>
 
                 <tr>
@@ -158,7 +157,7 @@ class evallandlordController
                 return true;
             }
 
-            echo "<script language='javascript'>alert('Xin lỗi bạn hệ thống đang gặp lỗi vì bạn chưa nhập đầy đủ thông tin" . $optr2 . " ');</script>";
+            echo "<script language='javascript'>alert('Xin lỗi bạn hệ thống đang gặp lỗi vì bạn chưa nhập đầy đủ thông tin ');</script>";
             echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . 'evaluser?idDanhGia=' . $_GET['idDanhGia'] . '">';
 
             return false;

@@ -11,7 +11,7 @@ class configureHotel
           <div class="center">
             <form action="" method="POST" class="form" id="form-1">
               <h3 class="heading">Chỉnh sửa phòng trọ</h3>
-              <p class="desc">Hãy nhập thông tin bên dưới<br> L<span>ONG</span> N<span>HONG</span> ❤️</p>
+              <p class="desc">Hãy nhập thông tin bên dưới<br> S<span>TAY</span> S<span>CORE</span> ❤️</p>
 
               <div class="spacer"></div>
 
