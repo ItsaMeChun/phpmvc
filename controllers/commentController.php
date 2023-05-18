@@ -23,7 +23,6 @@ class commentsView
 
             <?php } else { ?>
                 <div class="box-cmt-item">
-                
                     <input name="txtEmail" type="text" maxlength="50" placeholder="Tên hoặc Email" class="form-control" readonly>
                 </div>    
                 <div class="dcap">
@@ -31,9 +30,7 @@ class commentsView
                     <!--               -->
                 </div>
             <?php } ?>
-                
-            
-        </form>       
+        </form>
     </div>
 <?php
     }

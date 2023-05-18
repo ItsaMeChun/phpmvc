@@ -73,7 +73,6 @@ class detailsView
               <?php echo nl2br($row['MoTaPhongTro']); ?>
               </p>
             </div>
-            
           <div class="product">
             <h3 class="heading">
               <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0) { ?>
@@ -83,13 +82,11 @@ class detailsView
                     <?php }?>
                   </h3>
                   <div class="product__container">
-
-
                   </div>
                 </div>
               </div>
               <?php }?>
-          </div>                    
+          </div>
 <?php
     }
 }
