@@ -68,11 +68,13 @@ class roomController
 {
     public function __invoke()
     {
-        // $roomModel = new App\Models\roomModel();
         $roomModel = new roomModel();
-        $rooms = $roomModel->getAllRooms();
+        $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
+        $rooms = $roomModel->getAllRooms($currentPage);
         $roomView = new roomView();
         $roomView->render($rooms);
+        $pagination = $roomModel->renderPagination($currentPage);
+        echo $pagination;
     }
 }
 ?>

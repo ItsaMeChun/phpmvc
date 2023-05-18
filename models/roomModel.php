@@ -12,36 +12,39 @@ class roomModel
     public $area;
     public $roomNumber;
     private $db;
+    private $limitPage = 8; //change this number to show how many rooms you need in one page
 
     public function __construct()
     {
         $this->db = new Database();
     }
 
-    public function getAllRooms()
+    public function getAllRooms($page)
     {
-        // $rowCount = $db->query('SELECT count(*) FROM phongtro');
+        $limit = $this->limitPage; // Number of rooms per page
+        $offset = ($page - 1) * $limit; // Offset for pagination
 
-        // pass number of records to
-        // $pages->set_total($rowCount);
-        $query = 'SELECT DISTINCT phongtro.*, picture.url, nhatro.DiaChi
-                FROM phongtro
-                LEFT JOIN nhatro ON nhatro.MaNhaTro = phongtro.MaNhaTro
-                LEFT JOIN hopdongthue ON hopdongthue.MaPhongTro = phongtro.MaPhongTro
-                LEFT JOIN (
-                    SELECT MaPhongTro, url
-                    FROM (
-                        SELECT MaPhongTro, url
-                        FROM picture
-                        ORDER BY RAND()
-                    ) randomized_picture
-                    GROUP BY MaPhongTro
-                ) picture ON phongtro.MaPhongTro = picture.MaPhongTro';
+        $query = "SELECT DISTINCT phongtro.*, picture.url, nhatro.DiaChi
+              FROM phongtro
+              LEFT JOIN nhatro ON nhatro.MaNhaTro = phongtro.MaNhaTro
+              LEFT JOIN hopdongthue ON hopdongthue.MaPhongTro = phongtro.MaPhongTro
+              LEFT JOIN (
+                  SELECT MaPhongTro, url
+                  FROM (
+                      SELECT MaPhongTro, url
+                      FROM picture
+                      ORDER BY RAND()
+                  ) randomized_picture
+                  GROUP BY MaPhongTro
+              ) picture ON phongtro.MaPhongTro = picture.MaPhongTro
+              LIMIT {$limit} OFFSET {$offset}";
+
         $result = $this->db->select($query);
         if (!$result) {
             // echo 'Database Error: ' . $this->db->error;
             exit;
         }
+
         $rooms = [];
         while ($row = $result->fetch_assoc()) {
             $rooms[] = $row;
@@ -69,6 +72,27 @@ class roomModel
         }
 
         return $result;
+    }
+
+    public function renderPagination($currentPage)
+    {
+        $limit = $this->limitPage; // Number of rooms per page
+
+        $query = 'SELECT COUNT(DISTINCT MaPhongTro) AS total FROM phongtro';
+        $result = $this->db->select($query);
+        $row = $result->fetch_assoc();
+        $totalRooms = $row['total'];
+
+        $totalPages = ceil($totalRooms / $limit);
+
+        $pagination = '<div class="pagination">';
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $active = ($i == $currentPage) ? 'active' : '';
+            $pagination .= '<a href="?page=' . $i . '" class="' . $active . '">' . $i . '</a>';
+        }
+        $pagination .= '</div>';
+
+        return $pagination;
     }
 
     public function getRoomDebug($id)
