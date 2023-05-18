@@ -12,7 +12,7 @@ class roomModel
     public $area;
     public $roomNumber;
     private $db;
-    private $limitPage = 8; //change this number to show how many rooms you need in one page
+    private $limitPage = 8; // change this number to show how many rooms you need in one page
 
     public function __construct()
     {
