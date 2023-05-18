@@ -103,15 +103,12 @@ a.help-submit {
       $details = new detailsController();
       $details();
     ?>
-    <?php      
+    <?php
       $co = new commentController();
       $co();
       $re = new reviewController();
       $re();?>
       </div>
-      
-      
-    
     </div>
 
   <?php

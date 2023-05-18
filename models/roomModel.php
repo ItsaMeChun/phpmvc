@@ -20,12 +20,11 @@ class roomModel
 
     public function getAllRooms()
     {
-        
         // $rowCount = $db->query('SELECT count(*) FROM phongtro');
 
-// pass number of records to
-        // $pages->set_total($rowCount); 
-        $query = "SELECT phongtro.*, picture.url, nhatro.DiaChi
+        // pass number of records to
+        // $pages->set_total($rowCount);
+        $query = 'SELECT phongtro.*, picture.url, nhatro.DiaChi
               FROM phongtro
               Left join nhatro on nhatro.MaNhaTro = phongtro.MaNhaTro
               Left join hopdongthue on hopdongthue.MaPhongTro =phongtro.MaPhongTro
@@ -34,7 +33,7 @@ class roomModel
               FROM picture
               ORDER BY RAND()
               LIMIT 1 ) picture
-              ON phongtro.MaPhongTro = picture.MaPhongTro ";
+              ON phongtro.MaPhongTro = picture.MaPhongTro ';
         $result = $this->db->select($query);
         if (!$result) {
             echo 'Database Error: ' . $this->db->error;
@@ -97,7 +96,7 @@ class roomModel
         return $result;
     }
 
-    public function addRoom($idMotel, $description, $price, $area, $roomNumber,)
+    public function addRoom($idMotel, $description, $price, $area, $roomNumber)
     {
         $query = "INSERT INTO phongtro (MaNhaTro, MoTaPhongTro, GiaThue, DienTich, SoPhong)
               VALUES({$idMotel}, '{$description}', '{$price}', '{$area}', '{$roomNumber}')";

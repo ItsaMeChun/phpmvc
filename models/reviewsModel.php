@@ -1,4 +1,5 @@
 <?php
+
 include_once __DIR__ . '/../libs/database.php';
 include_once __DIR__ . '/../models/reviewsModel.php';
 
@@ -9,13 +10,12 @@ class reviewsModel
     public $content;
     private $db;
 
-
     public function __construct()
     {
         $this->db = new Database();
     }
 
-    public function getAllReviews($MaPhongTro )
+    public function getAllReviews($MaPhongTro)
     {
         $query = "SELECT * FROM reviews Left join account
             on account.MaAccount = reviews.MaAccount
@@ -25,7 +25,7 @@ class reviewsModel
         $result = $this->db->select($query);
         if (!$result) {
             echo '<div class="container" ><p style="margin:30px 0">Phòng này hiện tại chưa có bình luận</p></div>';
-            //echo ; //
+            // echo ; //
             // exit;
             // die;
             return;
@@ -38,7 +38,7 @@ class reviewsModel
         return $reviews;
     }
 
-    public function addReviews($MaPhongTro,$MaAccount,$content)
+    public function addReviews($MaPhongTro, $MaAccount, $content)
     {
         $query = "INSERT INTO reviews (MaPhongTro, MaAccount, content, submit_date)
               VALUES('{$MaPhongTro}', '{$MaAccount}', '{$content}', NOW())";
@@ -49,5 +49,4 @@ class reviewsModel
 
         return false;
     }
-
 }

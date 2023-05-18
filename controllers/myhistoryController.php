@@ -10,7 +10,6 @@ class myhistoryView
 {
     public function render($myhistory)
     {
-
         ?>    
     <div class="container">
         <h3 class="heading">
@@ -29,12 +28,10 @@ class myhistoryView
     <th>Trạng Thái</th>
   </tr>
   <?php
-        if(isset($_SESSION['user_idNum']))
-            {          
-                $STT =1;      
-        foreach ($myhistory as $row)
-        {
-            ?>  
+        if (isset($_SESSION['user_idNum'])) {
+            $STT = 1;
+            foreach ($myhistory as $row) {
+                ?>  
   <tr>
     <td><?php echo $STT++; ?></td>
     <td><?php echo $row['DiaChi']; ?></td>
@@ -44,31 +41,29 @@ class myhistoryView
     <td><?php echo $row['ngaylaphoadon']; ?></td>
     <td><?php echo $row['thanhtien']; ?> VNĐ</td>
     <td>
-        <?php 
-            $db = new Database();
-            $query = "SELECT * From hopdongthue as a 
+        <?php
+                $db = new Database();
+                $query = "SELECT * From hopdongthue as a 
                 left join phongtro as b on a.MaPhongTro = b.MaPhongTro 
                 left join khachtro as c on a.MaKhachTro = c.MaKhachTro 
                 left join nhatro as d on d.MaNhaTro = b.MaNhaTro
                 where not a.visible = 2 
                 and a.MaKhachTro={$_SESSION['user_idNum']} and a.MaPhongTro={$row['MaPhongTro']}";
-            $res = $db->select($query);
-            if($res){
-                echo "Thành Công";
-            }
-            else{
-                echo "Đã Hủy";
-            }
-        ?>
+                $res = $db->select($query);
+                if ($res) {
+                    echo 'Thành Công';
+                } else {
+                    echo 'Đã Hủy';
+                }
+                ?>
     </td>
 
 
-  <?php 
+  <?php
 
-            }        
-  
-    }
-  ?>
+            }
+        }
+        ?>
 </table>
 <?php
     }
@@ -78,7 +73,7 @@ class myhistoryController
     public function __invoke()
     {
         // $roomModel = new App\Models\roomModel();
-        $id=$_SESSION['user_idNum'];
+        $id = $_SESSION['user_idNum'];
         $contractModel = new contractModel();
         $myhistory = $contractModel->myhistoryContract($id);
         $myhistoryView = new myhistoryView();

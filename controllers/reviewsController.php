@@ -1,21 +1,20 @@
-<?php 
+<?php
 include_once __DIR__ . '/../models/reviewsModel.php';
 // require __DIR__ . '/../vendor/autoload.php';
 // use Dotenv\Dotenv;
 
 // $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 // $dotenv->load();
-class reviewView{
+class reviewView
+{
     public function renders($reviews)
-        {?>    
+    {?>    
     <div class="container">      
         <ul class="comment-list">
   
-            <?php 
-            if(isset($reviews))
-            {
-            foreach ($reviews as $row)
-            {?>
+            <?php
+            if (isset($reviews)) {
+                foreach ($reviews as $row) {?>
             <li id="c-54243980" data-id="54243980"  class=" no-border item idx0">
                 <div class="cmt-top">
                         <p class="cmt-top-name">
@@ -32,16 +31,17 @@ class reviewView{
                     </div>
                 </div>
             </li>
-            <?php 
+            <?php
                 }
-                }
-                else{
-                }?>  
+            }
+
+        ?>  
         </ul>
         
     </div>
-<?php 
-}}
+<?php
+    }
+}
 class reviewController
 {
     public function __invoke()

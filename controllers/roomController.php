@@ -31,25 +31,25 @@ class roomView
                 </a>
               </h4>
               <p class="product__item__price">
-                <span>Giá</span>  <?php echo number_format($row['GiaThue'],0,",","."); ?> VNĐ
+                <span>Giá</span>  <?php echo number_format($row['GiaThue'], 0, ',', '.'); ?> VNĐ
               </p>
               <p style="padding-top: 1rem; margin-bottom: 1rem">
                   Diện tích <span><?php echo $row['DienTich']; ?></span>
               </p>
               <p style="padding-top: 1rem; margin-bottom: 1rem">
-                  Tình trạng <span><?php 
+                  Tình trạng <span><?php
                     $db = new Database();
-                    $query = "SELECT * From hopdongthue where 
+                $query = "SELECT * From hopdongthue where 
                     not visible = 2 and not CURDATE()>DATE_ADD(ngaytraphong, INTERVAL 1 DAY) 
                     and MaPhongTro={$row['MaPhongTro']} ORDER BY id DESC LIMIT 1";
-                    $res = $db->select($query);
-                    if(!$res) {
-                      echo "còn phòng"; 
-                    }else {
-                      echo "hết phòng"; 
-                    }
-                    
-                  ?></span>
+                $res = $db->select($query);
+                if (!$res) {
+                    echo 'còn phòng';
+                } else {
+                    echo 'hết phòng';
+                }
+
+                ?></span>
               </p>
               <a href="<?php echo $_ENV['URL']; ?>indetails?idPhongTro=<?php echo $row['MaPhongTro']; ?>&idNhaTro=<?php echo $row['MaNhaTro']; ?>" class="product__item__action">
                 <i class='bx bx-category' ></i>

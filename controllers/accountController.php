@@ -63,7 +63,7 @@ class userController
             }
             $role = $_POST['role'];
             $_SESSION['user_role'] = $_POST['role'];
-            $loginSuccessful = $accountModel->login($email, $password,$role);
+            $loginSuccessful = $accountModel->login($email, $password, $role);
             if ($loginSuccessful) {
                 $userid = $_SESSION['user_id'];
                 if ($_SESSION['user_role'] == 0) {

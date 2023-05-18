@@ -94,11 +94,11 @@ class contractViews
             var_dump($khachtro);
             $contractModel = new contractModel();
             $res = $contractModel->foundContract($room);
-            if(!$res){
-              // echo "<script>alert('Phòng này đã có người đặt rồi')</script>";
-              return false;
+            if (!$res) {
+                // echo "<script>alert('Phòng này đã có người đặt rồi')</script>";
+                return false;
             }
-            $result = $contractModel->createContract($room, $chutro, $khachtro, $price, $checkindate,$month, $method, $sdt);
+            $result = $contractModel->createContract($room, $chutro, $khachtro, $price, $checkindate, $month, $method, $sdt);
             if (!$result) {
                 return false;
             }

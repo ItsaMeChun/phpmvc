@@ -10,13 +10,12 @@ class historybillView
 {
     public function render($historybill)
     {
-
-        ?>     
+        if (isset($_SESSION['user_idNum']) && $historybill) { ?>
     <div class="container">
         <h3 class="heading">
             Đặt Phòng
         </h3>
-    </div>       
+    </div>
 <table>
   <tr>
     <th>STT</th>
@@ -29,34 +28,27 @@ class historybillView
     <th>Hủy</th>
   </tr>
   <?php
-        if(isset($_SESSION['user_idNum']))
-            {          
-                $STT =1;      
-        foreach ($historybill as $row)
-        {
-            ?>  
-  <tr>
-    <td><?php echo $STT++; ?></td>
-    <td><?php echo $row['DiaChi']; ?></td>
-    <td><?php echo $row['SoPhong']; ?></td>
-    <td><?php echo $row['ngaynhanphong']; ?></td>
-    <td><?php echo $row['ngaytraphong']; ?></td>
-    <td><?php echo $row['ngaylaphoadon']; ?></td>
-    <td><?php echo $row['thanhtien']; ?> VNĐ</td>
-    <td>
-        <a href="<?php echo $_ENV['URL']; ?>cancelhistorybill?idPhongTro=<?php echo $row['MaPhongTro']; ?>&idUser=<?php 
-            $id=$_SESSION['user_idNum'];
-            echo $id;
-            ?>">Hủy
+            $STT = 1;
+            foreach ($historybill as $row) {
+                ?>
+    <tr>
+        <td><?php echo $STT++; ?></td>
+        <td><?php echo $row['DiaChi']; ?></td>
+        <td><?php echo $row['SoPhong']; ?></td>
+        <td><?php echo $row['ngaynhanphong']; ?></td>
+        <td><?php echo $row['ngaytraphong']; ?></td>
+        <td><?php echo $row['ngaylaphoadon']; ?></td>
+        <td><?php echo $row['thanhtien']; ?> VNĐ</td>
+        <td>
+        <a href="<?php echo $_ENV['URL']; ?>cancelhistorybill?idPhongTro=<?php echo $row['MaPhongTro']; ?>&idUser=<?php
+                $id = $_SESSION['user_idNum'];
+                echo $id;
+                ?>">Hủy
         </a>
-
-
-  <?php 
-
-            }        
-  
-    }
-  ?>
+  <?php
+            }
+        }
+        ?>
 </table>
 <?php
     }
@@ -66,11 +58,10 @@ class historybillController
     public function __invoke()
     {
         // $roomModel = new App\Models\roomModel();
-        $id=$_SESSION['user_idNum'];
+        $id = $_SESSION['user_idNum'];
         $contractModel = new contractModel();
         $historybill = $contractModel->historyContract($id);
         $historyView = new historybillView();
-
         $historyView->render($historybill);
     }
 }

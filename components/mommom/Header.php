@@ -32,7 +32,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     <button class="btn btn--cart header__action__btn">
       <a href="<?php echo $_ENV['URL']; ?>history">
         Lịch Sử
-      </a> 
+      </a>
     </button>
     <button class="btn btn--cart header__action__btn">
       <a href="<?php echo $_ENV['URL']; ?>transaction">
@@ -44,8 +44,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
         Đánh Giá
       </a>
     </button>
-    <?php }
-    elseif(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0){?>
+    <?php } elseif (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0) {?>
       <button class="btn btn--cart header__action__btn">
         <a href="<?php echo $_ENV['URL']; ?>landlordpage">
           Đánh Giá
@@ -70,7 +69,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     <?php } ?>
     <button class="btn btn--primary header__action__btn">
       <?php if (isset($_SESSION['user_name'])) { ?>
-        <a href="user_info">
+        <a href="#">
           <i class="bx bxs-user"></i> <?php echo $_SESSION['user_name']; ?>
         </a>
       <?php } else { ?>

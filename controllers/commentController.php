@@ -1,9 +1,10 @@
-<?php 
+<?php
 include_once __DIR__ . '/../models/reviewsModel.php';
 
-class commentsView{
+class commentsView
+{
     public function renders()
-        {?>    
+    {?>    
     <div class="container">      
         <form method="POST" class="form" id="form-2">
             <div class="group-cm">
@@ -34,34 +35,34 @@ class commentsView{
             
         </form>       
     </div>
-<?php 
-}}
+<?php
+    }
+}
 class commentController
 {
     public function __invoke()
     {
         // $roomModel = new App\Models\roomModel();
-        
+
         // $reviews = $reviewsModel->getAllReviews($_GET['idPhongTro']);
         $commentsView = new commentsView();
         $commentsView->renders();
         if (isset($_POST['submit2'])) {
             $con = trim($_POST['txtContent']);
-            
-            $idP= $_GET['idPhongTro'];
+
+            $idP = $_GET['idPhongTro'];
             $idU = $_SESSION['user_id'];
             $reviewsModel = new reviewsModel();
-            $rescheck = $reviewsModel->addReviews($idP,$idU, $con);
+            $rescheck = $reviewsModel->addReviews($idP, $idU, $con);
 
             if ($rescheck) {
                 // Redirecting the user to the login page.idNhaTro
                 // echo 'http://localhost/phpmvc/indetails?idPhongTro='.$_GET['idPhongTro'].'&idNhaTro='.$_GET['idNhaTro'].'';
-                echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . 'homepage">';
-            }else{
+                echo '<meta http-equiv="refresh" content="0;>';
+            } else {
                 echo '<meta http-equiv="refresh" content="0;url=login">';
             }
-        }
-        else{
+        } else {
             // echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'].'">';
             return false;
         }
