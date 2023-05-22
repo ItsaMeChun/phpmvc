@@ -46,7 +46,7 @@
       </div>
       <div class="footer__container__footer">
         <div class="copy-right">
-          © 2023 Web Stay<span>Score</span> - Nền tảng cung cấp dịch vụ nhà trọ.
+          © 2023 | Stay<span>Score</span> - Website tìm phòng trọ trên nền tảng Composer
         </div>
         <div class="footer__container__footer__social">
           <a href="https://www.facebook.com">

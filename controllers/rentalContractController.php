@@ -91,7 +91,7 @@ class contractViews
             $month = $_POST['month'];
             $price = $_POST['price'];
             $checkindate = $_POST['checkin-date'];
-            var_dump($khachtro);
+            // var_dump($khachtro);
             $contractModel = new contractModel();
             $res = $contractModel->foundContract($room);
             if (!$res) {

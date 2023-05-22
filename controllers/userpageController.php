@@ -10,7 +10,8 @@ class userpageView
 {
     public function render($evaluser)
     {
-        ?>            
+        ?>
+        <?php if (isset($_SESSION['user_idNum']) && $evaluser) { ?>
     <div class="container">
         <h3 class="heading">
             Đánh Giá Phòng trọ
@@ -25,10 +26,9 @@ class userpageView
     <th>Đánh Giá</th>
   </tr>
   <?php
-        if (isset($_SESSION['user_idNum'])) {
             $STT = 1;
             foreach ($evaluser as $row) {
-                ?>  
+                ?> 
   <tr>
     <td><?php echo $STT++; ?></td>
     <td><?php echo $row['DiaChi']; ?></td>

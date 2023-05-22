@@ -6,7 +6,7 @@
           Những nhà trọ
         </h2>
         <p class="slide__left__desc">
-          Cùng tìm kiếm những nhà trọ trên L<span>ONG</span> N<span>HONG</span> nào
+          Cùng tìm kiếm những nhà trọ trên S<span>TAY</span> S<span>CORE</span> nào
         </p>
         <div>
           <a href="" class="btn--sub">
@@ -26,7 +26,7 @@
           Những nhà trọ thịnh hành
         </h2>
         <p class="slide__left__desc">
-          Cùng tìm kiếm những nhà trọ thịnh hành trên L<span>ONG</span> N<span>HONG</span> nào
+          Cùng tìm kiếm những nhà trọ thịnh hành trên S<span>TAY</span> S<span>CORE</span> nào
         </p>
         <div>
           <a href="" class="btn--sub">
@@ -66,7 +66,7 @@
           Những nhà trọ
         </h2>
         <p class="slide__left__desc">
-          Cùng tìm kiếm Những nhà trọ trên L<span>ONG</span> N<span>HONG</span> nào
+          Cùng tìm kiếm Những nhà trọ trên S<span>TAY</span> S<span>CORE</span> nào
         </p>
         <div>
           <a href="" class="btn--sub">

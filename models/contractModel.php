@@ -20,16 +20,13 @@ class contractModel
     public function createContract($idRoom, $idOwner, $idGuest, $price, $dateCreate, $month, $method, $sdt)
     {
         $ngaynhan = date('Y-m-d', strtotime($dateCreate . ' + 3 days'));
-        $ngaytra = $ngaynhan;
         $monthbill = $month;
         $bill = $month * $price;
 
         $query = "INSERT INTO `hopdongthue`(`MaPhongTro`, `MaChuTro`, `MaKhachTro`, `thanhtien`, `ngaylaphoadon`, `sothangthue`, `ngaynhanphong` , `ngaytraphong`, `MaPhuongThuc`, `sdt`)
         VALUES ('{$idRoom}', '{$idOwner}', '{$idGuest}', '{$bill}', '{$dateCreate}', '{$month}','{$ngaynhan}', DATE_ADD('{$ngaynhan}', INTERVAL +{$monthbill} MONTH), '{$method}', '{$sdt}')";
-
-        $que = "INSERT INTO phieudanhgiaphongtro (MaChuTro, MaKhachTro, MaPhongTro, RoleEval) 
-            VALUES ('{$idOwner}','{$idGuest}','{$idRoom}',1)";
-
+        $que = "INSERT INTO phieudanhgiaphongtro (MaKhachTro, MaPhongTro, RoleEval) 
+            VALUES ('{$idGuest}','{$idRoom}',1)";
         $q = "INSERT INTO phieudanhgiakhachtro (MaChuTro, MaKhachTro, MaPhongTro, RoleEvalKhachTro) 
             VALUES ('{$idOwner}','{$idGuest}','{$idRoom}',1)";
 
