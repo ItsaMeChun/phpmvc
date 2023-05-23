@@ -95,4 +95,18 @@ class motelModel
 
         return false;
     }
+
+    public function search($content)
+    {
+        $query = "SELECT DISTINCT phongtro.MaPhongTro, nhatro.MaNhaTro, phongtro.MoTaPhongTro, phongtro.GiaThue, phongtro.DienTich, phongtro.SoPhong, nhatro.DiaChi, nhatro.MoTaNhaTro, nhatro.MaChuTro, picture.id, picture.url
+        FROM phongtro
+        JOIN nhatro ON phongtro.MaNhaTro = nhatro.MaNhaTro
+        LEFT JOIN picture ON phongtro.MaPhongTro = picture.MaPhongTro
+        WHERE nhatro.DiaChi LIKE '%$content%' OR phongtro.SoPhong LIKE '%$content%'";
+        $result = $this->db->select($query);
+        if (!$result) {
+            return false;
+        }
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
