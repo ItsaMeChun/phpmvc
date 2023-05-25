@@ -113,7 +113,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
 
               searchResults.classList.add('show');
             } else {
-              searchResults.innerHTML = '<span>không tìm thấy phòng trọ</span>';
+              searchResults.innerHTML = '<span>You fucking donkey!</span>';
               searchResults.classList.add('show');
             }
           }

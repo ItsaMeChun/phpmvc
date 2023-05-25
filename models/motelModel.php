@@ -102,11 +102,12 @@ class motelModel
         FROM phongtro
         JOIN nhatro ON phongtro.MaNhaTro = nhatro.MaNhaTro
         LEFT JOIN picture ON phongtro.MaPhongTro = picture.MaPhongTro
-        WHERE nhatro.DiaChi LIKE '%$content%' OR phongtro.SoPhong LIKE '%$content%'";
+        WHERE nhatro.DiaChi LIKE '%{$content}%' OR phongtro.SoPhong LIKE '%{$content}%'";
         $result = $this->db->select($query);
         if (!$result) {
             return false;
         }
+
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
