@@ -9,7 +9,7 @@ class createMotelController
                 <div class="center">
                 <form action="" method="POST" class="form" id="form-1">
                     <h3 class="heading">Thêm phòng trọ của bạn</h3>
-                    <p class="desc">Hãy nhập thông tin bên dưới để đăng lên L<span>ONG</span> N<span>HONG</span> ❤️</p>
+                    <p class="desc">Hãy nhập thông tin bên dưới để đăng lên S<span>TAY</span> S<span>CORE</span> ❤️</p>
 
                     <div class="spacer"></div>
 
@@ -20,7 +20,7 @@ class createMotelController
                     </div>
 
                     <div class="form-group">
-                    <label for="email" class="form-label">Diện tích (m2)</label>
+                    <label for="email" class="form-label">Diện tích (m²)</label>
                     <input id="email" name="size" type="text" placeholder="VD: 40" class="form-control" required autofocus>
                     <span class="form-message"></span>
                     </div>

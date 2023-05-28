@@ -14,6 +14,34 @@
   <link rel="stylesheet" href="./assets/boxicons-2.0.7/css/boxicons.min.css">
   <link rel="stylesheet" href="./assets/css/styles1.css">
   <title>Trang chủ</title>
+  <style>
+      .pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+
+  .pagination a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    text-decoration: none;
+    color: #333;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .pagination a.active {
+    background-color: #333;
+    color: #fff;
+  }
+
+  .pagination a:hover {
+    background-color: #ddd;
+  }
+
+  </style>
 </head>
 <body>
   <?php

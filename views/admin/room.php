@@ -1,3 +1,9 @@
+<?php 
+  header("Cache-Control: no-cache,must-revalidate");
+  header("Pragma: no-cache");
+  header("Cache-Control: max-age=2592000");
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,69 +66,24 @@
     .table_chart {width: 100%; display: flex; text-align: center; padding: 10px;}
     .box {flex: 1;border: 2px solid #000; margin: 10px; height: 100px; border-radius: 10px;display:flex;}
     .box>p {height: -webkit-fill-available;display: block;width: -webkit-fill-available;position: relative;text-align: center;top: 35%;}
+        table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
 </style>
 <body>
-    <div class="sidebar">
-        <div class="logo-details">
-        <i class='bx bxl-c-plus-plus icon'></i>
-            <div class="logo_name">Admin</div>
-            <i class='bx bx-menu' id="btn" ></i>
-        </div>
-        <ul class="nav-list">
-        <li>
-            <i class='bx bx-search' ></i>
-            <input type="text" placeholder="Search...">
-            <span class="tooltip">Search</span>
-        </li>
-        <li>
-            <a href="http://localhost/phpmvc/admin/">
-            <i class='bx bx-grid-alt'></i>
-            <span class="links_name">Dashboard</span>
-            </a>
-            <span class="tooltip">Dashboard</span>
-        </li>
-        <li>
-        <a href="{{ route('admin.user') }}">
-            <i class='bx bx-user' ></i>
-            <span class="links_name">User</span>
-        </a>
-        <span class="tooltip">User</span>
-        </li>
-        <li>
-        <a href="{{ route('admin.revenue') }}">
-            <i class='bx bx-stats' ></i>
-            <span class="links_name">Revenue</span>
-        </a>
-        <span class="tooltip">Revenue</span>
-        </li>
-        <li>
-        <a href="{{ route('admin.order') }}">
-            <i class='bx bx-cart-alt' ></i>
-            <span class="links_name">Order</span>
-        </a>
-        <span class="tooltip">Order</span>
-        </li>
-        <li>
-        <a href="#">
-            <i class='bx bx-cog' ></i>
-            <span class="links_name">Setting</span>
-        </a>
-        <span class="tooltip">Setting</span>
-        </li>
-        <li class="profile">
-            <div class="profile-details">
-            <!--<img src="profile.jpg" alt="profileImg">-->
-            <div class="name_job">
-                <div class="name">Prem Shahi</div>
-                <div class="job">Web designer</div>
-            </div>
-            </div>
-            <a href="">
-                <i class='bx bx-log-out' id="log_out" ></i>
-            </a>
-        </li>
-        </ul>
-    </div>
+    <?php
+        include __DIR__.'/assets/sidebar.php';
+    ?>
     <section class="home-section">
     <!-- //** Phần Admin */ -->
     <?php 
@@ -133,23 +94,27 @@
         $end=$contract->endroomContract();
     ?>
     <div class='table_chart'> 
-        <div class="box" style="background: #ffa03d;"><p>Tổng tiền: <?php 
+        <div class="box" style="background: #ffa03d;"><p>Tổng tiền: <?php
             foreach($total as $row){
                 echo number_format($row['Tong'],0,",",".");
             }
         ?> VNĐ</p></div>
-        <div class="box" style="background: #478fff;"><p>Đặt phòng: <?php             
+        <div class="box" style="background: #478fff;"><p>Đặt phòng: <?php
             foreach($book as $row){
                 echo number_format($row['Dat'],0,",",".");
             }; ?></p></div>
-        <div class="box" style="background: #00ff90;"><p>Hủy phòng: <?php 
+        <div class="box" style="background: #00ff90;"><p>Hủy phòng: <?php
             foreach($end as $row){
                 echo number_format($row['Huy'],0,",",".");
             }?>
         </p></div>
     </div>
     <div class='chartdiv'>
-   
+    <?php
+        include_once(__DIR__ .'/../../controllers/admin/allroomController.php');
+        $roomController = new allroomController();
+        $roomController();
+    ?>
     </div>
     <!-- <div id="chart-container">
         <canvas id="graph"></canvas>

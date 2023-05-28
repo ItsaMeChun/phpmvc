@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="../assets/boxicons-2.0.7/css/boxicons.min.css">
     <link rel="stylesheet" href="../assets/css/styles1.css">
 
-
     <!-- <link rel="stylesheet" href="../../assets/sass/admin.scss">
     <link rel="stylesheet" href="../../assets/css/admin.min.css"> -->
     <link rel="stylesheet" href="../assets/css/admin.css">
@@ -70,6 +69,7 @@
     .table_chart {width: 100%; display: flex; text-align: center; padding: 10px;}
     .box {flex: 1;border: 2px solid #000; margin: 10px; height: 100px; border-radius: 10px;display:flex;}
     .box>p {height: -webkit-fill-available;display: block;width: -webkit-fill-available;position: relative;text-align: center;top: 35%;}
+    
     table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -87,9 +87,7 @@ tr:nth-child(even) {
 }
 </style>
 <body>
-    <?php
-        include __DIR__.'/assets/sidebar.php';
-    ?>
+   <?php include __DIR__ . '/assets/sidebar.php' ?>
     <section class="home-section">
     <!-- //** Phần Admin */ -->
     <?php 
@@ -100,16 +98,16 @@ tr:nth-child(even) {
         $end=$contract->endroomContract();
     ?>
     <div class='table_chart'> 
-        <div class="box" style="background: #ffa03d;"><p>Tổng tiền: <?php 
+        <div class="box" style="background: #ffa03d;"><p>Tổng tiền: <?php
             foreach($total as $row){
                 echo number_format($row['Tong'],0,",",".");
             }
         ?> VNĐ</p></div>
-        <div class="box" style="background: #478fff;"><p>Đặt phòng: <?php             
+        <div class="box" style="background: #478fff;"><p>Đặt phòng: <?php
             foreach($book as $row){
                 echo number_format($row['Dat'],0,",",".");
             }; ?></p></div>
-        <div class="box" style="background: #00ff90;"><p>Hủy phòng: <?php 
+        <div class="box" style="background: #00ff90;"><p>Hủy phòng: <?php
             foreach($end as $row){
                 echo number_format($row['Huy'],0,",",".");
             }?>
@@ -117,11 +115,10 @@ tr:nth-child(even) {
     </div>
     <div class='chartdiv'>
     <?php
-          include_once(__DIR__ .'/../../controllers/admin/alllandlordController.php');
-          $roomController = new alllandlordController();
+          include_once(__DIR__ .'/../../controllers/admin/allUserController.php');
+          $roomController = new allUserController();
           $roomController();
         ?>
-    </div>
     </div>
     <!-- <div id="chart-container">
         <canvas id="graph"></canvas>

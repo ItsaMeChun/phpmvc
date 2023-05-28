@@ -11,7 +11,7 @@ class configureHotel
           <div class="center">
             <form action="" method="POST" class="form" id="form-1">
               <h3 class="heading">Chỉnh sửa phòng trọ</h3>
-              <p class="desc">Hãy nhập thông tin bên dưới<br> L<span>ONG</span> N<span>HONG</span> ❤️</p>
+              <p class="desc">Hãy nhập thông tin bên dưới<br> S<span>TAY</span> S<span>CORE</span> ❤️</p>
 
               <div class="spacer"></div>
 
@@ -35,7 +35,8 @@ class configureHotel
 
               <div class="form-group">
               <label for="password" class="form-label">Mô tả nhà trọ</label>
-              <textarea style="resize:none;" id="password" name="des" placeholder="VD: Sạch, có nước nóng" class="form-control" required autofocus><?php echo $row['MoTaPhongTro']; ?></textarea>
+              <!-- <textarea style="resize:none;" id="password" name="des" placeholder="VD: Sạch, có nước nóng" class="form-control" required autofocus><?php echo $row['MoTaPhongTro']; ?></textarea> -->
+              <textarea name='des' required autofocus><?php echo $row['MoTaPhongTro']; ?></textarea><br>
               <span class="form-message"></span>
               </div>
               <button type="submit" name="submit" class="form-submit">Đăng lên</button>

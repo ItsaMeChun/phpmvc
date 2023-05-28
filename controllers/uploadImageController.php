@@ -17,7 +17,7 @@ class uploadImageController
                 <?php } else { ?>
                     <h3 class="heading">Thêm hình ảnh</h3>
                 <?php } ?>
-                    <p class="desc">Hãy thêm hình ảnh muốn <br> L<span>ONG</span> N<span>HONG</span> ❤️</p>
+                    <p class="desc">Hãy thêm hình ảnh muốn <br> S<span>TAY</span> S<span>CORE</span> ❤️</p>
 
                     <div class="form-group">
                         <label for="email" class="form-label">Hình Ảnh</label>

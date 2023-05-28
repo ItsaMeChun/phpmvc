@@ -10,7 +10,7 @@ class contractInfo
         <div class="center">
           <form action="" method="POST" class="form" id="form-1">
             <h3 class="heading">Hợp đồng</h3>
-            <p class="desc">Cùng nhau tìm trọ tại L<span>ONG</span> N<span>HONG</span> ❤️</p>
+            <p class="desc">Cùng nhau tìm trọ tại S<span>TAY</span> S<span>CORE</span> ❤️</p>
 
             <div class="spacer"></div>
 
@@ -91,14 +91,14 @@ class contractViews
             $month = $_POST['month'];
             $price = $_POST['price'];
             $checkindate = $_POST['checkin-date'];
-            var_dump($khachtro);
+            // var_dump($khachtro);
             $contractModel = new contractModel();
             $res = $contractModel->foundContract($room);
-            if(!$res){
-              // echo "<script>alert('Phòng này đã có người đặt rồi')</script>";
-              return false;
+            if (!$res) {
+                // echo "<script>alert('Phòng này đã có người đặt rồi')</script>";
+                return false;
             }
-            $result = $contractModel->createContract($room, $chutro, $khachtro, $price, $checkindate,$month, $method, $sdt);
+            $result = $contractModel->createContract($room, $chutro, $khachtro, $price, $checkindate, $month, $method, $sdt);
             if (!$result) {
                 return false;
             }

@@ -8,7 +8,7 @@ class motelView
         <div class="center">
           <form action="" method="POST" class="form" id="form-1">
             <h3 class="heading">Thêm phòng trọ</h3>
-            <p class="desc">Hãy nhập thông tin bên dưới để đăng lên L<span>ONG</span> N<span>HONG</span> ❤️</p>
+            <p class="desc">Hãy nhập thông tin bên dưới để đăng lên S<span>TAY</span> S<span>CORE</span> ❤️</p>
 
             <div class="spacer"></div>
 
@@ -20,7 +20,8 @@ class motelView
 
             <div class="form-group">
               <label for="password" class="form-label">Mô tả nhà trọ</label>
-              <input id="password" name="des" type="text" placeholder="VD: Nhà trọ đẹp, máy lạnh..." class="form-control" required autofocus>
+              <!-- <input id="password" name="des" type="text" placeholder="VD: Nhà trọ đẹp, máy lạnh..." class="form-control" required autofocus> -->
+              <textarea name='des' required autofocus></textarea>
               <span class="form-message"></span>
             </div>
             <button type="submit" name="submit" class="form-submit">Đăng lên</button>

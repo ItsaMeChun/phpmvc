@@ -11,7 +11,7 @@ class accountView
             <div class="center">
             <form action="" method="POST" class="form" id="form-2">
                 <h3 class="heading">Đăng nhập</h3>
-                <p class="desc">Cùng nhau tìm trọ tại L<span>ONG</span> N<span>HONG</span> ❤️</p>
+                <p class="desc">Cùng nhau tìm trọ tại S<span>TAY</span> S<span>CORE</span> ❤️</p>
 
                 <div class="spacer"></div>
                 <div class="form-group">
@@ -63,7 +63,7 @@ class userController
             }
             $role = $_POST['role'];
             $_SESSION['user_role'] = $_POST['role'];
-            $loginSuccessful = $accountModel->login($email, $password,$role);
+            $loginSuccessful = $accountModel->login($email, $password, $role);
             if ($loginSuccessful) {
                 $userid = $_SESSION['user_id'];
                 if ($_SESSION['user_role'] == 0) {

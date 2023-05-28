@@ -18,14 +18,14 @@ class motelView
                 </a>
               </div>
               <h4 class="product__item__title">
-              <a href="">
+              <a href="<?php echo $_ENV['URL']; ?>roomdetails?idNhaTro=<?php echo $row['MaNhaTro']; ?>">
                   <?php echo $row['DiaChi']; ?>
                 </a>
               </h4>
               <p class="product__item__price">
                 <span>Mô tả: </span>  <?php echo $row['MoTaNhaTro']; ?>
               </p>
-              <a href="" class="product__item__action">
+              <a href="<?php echo $_ENV['URL']; ?>roomdetails?idNhaTro=<?php echo $row['MaNhaTro']; ?>" class="product__item__action">
                 <i class='bx bx-category' ></i>
                 Xem chi tiết
               </a>

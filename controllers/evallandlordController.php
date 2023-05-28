@@ -1,11 +1,12 @@
-<?php 
+<?php
 include_once __DIR__ . '/../models/evallandlordModel.php';
 // require __DIR__ . '/../vendor/autoload.php';
 // use Dotenv\Dotenv;
 
 // $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 // $dotenv->load();
-class evallandlordView{
+class evallandlordView
+{
     public function render()
     {?>    
     <div class="center">
@@ -19,7 +20,6 @@ class evallandlordView{
                 <tr>
                 <th style="width: 60%; text-align: center;" >Nội Dung</th>
                 <th style="text-align: center;">Điểm Đánh Giá</th>
-                
                 </tr>
 
                 <tr>
@@ -127,7 +127,7 @@ class evallandlordView{
             <button type="submit" name="submit" class="form-submit">Lưu</button>
         </form>
     </div>
-<?php 
+<?php
     }
 }
 class evallandlordController
@@ -136,7 +136,7 @@ class evallandlordController
     {
         // $roomModel = new App\Models\roomModel();
         $evallandlord = new evallandlordView();
-        $evallandlordModel= new evallandlordModel();
+        $evallandlordModel = new evallandlordModel();
         $evallandlord->render();
         if (isset($_POST['submit'])) {
             // $email = trim($_POST['email']);
@@ -149,20 +149,21 @@ class evallandlordController
             $op7 = trim($_POST['optr7']);
 
             $id = $_GET['idDanhGia'];
-            $result = $evallandlordModel->createEvalLandLord($id,$op1,$op2,$op3,$op4,$op5,$op6,$op7);
-            if($result){
+            $result = $evallandlordModel->createEvalLandLord($id, $op1, $op2, $op3, $op4, $op5, $op6, $op7);
+            if ($result) {
                 echo "<script language='javascript'>alert('Cám ơn vì sự đánh giá của bãn');</script>";
                 echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . 'homepage">';
-                return true; 
+
+                return true;
             }
 
-               
-            echo "<script language='javascript'>alert('Xin lỗi bạn hệ thống đang gặp lỗi vì bạn chưa nhập đầy đủ thông tin".$optr2. " ');</script>";
-            echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] .'evaluser?idDanhGia='.$_GET['idDanhGia'].'">';
-            return false;
-        }else {
+            echo "<script language='javascript'>alert('Xin lỗi bạn hệ thống đang gặp lỗi vì bạn chưa nhập đầy đủ thông tin ');</script>";
+            echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . 'evaluser?idDanhGia=' . $_GET['idDanhGia'] . '">';
+
             return false;
         }
+
+        return false;
     }
 }
 ?>

@@ -11,9 +11,7 @@ class roomView
     public function render($rooms)
     {?>
             <div class="product__container">
-            <?php
-            foreach ($rooms as $row) {
-                ?>
+            <?php foreach ($rooms as $row) {?>
             <div class="product__item">
               <div class="product__item__img">
                 <a href="<?php echo $_ENV['URL']; ?>indetails?idPhongTro=<?php echo $row['MaPhongTro']; ?>&idNhaTro=<?php echo $row['MaNhaTro']; ?>">
@@ -21,35 +19,34 @@ class roomView
                 </a>
               </div>
               <h4 class="product__item__title">
-              <a href="#">
-                  Nhà Trọ <?php echo $row['DiaChi']; ?>
+              <a href="<?php echo $_ENV['URL']; ?>indetails?idPhongTro=<?php echo $row['MaPhongTro']; ?>&idNhaTro=<?php echo $row['MaNhaTro']; ?>">
+                  <!-- Nhà Trọ <?php echo $row['DiaChi']; ?> -->
               </a>
               </h4>
               <h4 class="product__item__title">
-              <a href="#">
+              <a href="<?php echo $_ENV['URL']; ?>indetails?idPhongTro=<?php echo $row['MaPhongTro']; ?>&idNhaTro=<?php echo $row['MaNhaTro']; ?>">
                   Phòng Số <?php echo $row['SoPhong']; ?>
                 </a>
               </h4>
               <p class="product__item__price">
-                <span>Giá</span>  <?php echo number_format($row['GiaThue'],0,",","."); ?> VNĐ
+                <span>Giá</span>  <?php echo number_format($row['GiaThue'], 0, ',', '.'); ?> VNĐ
               </p>
               <p style="padding-top: 1rem; margin-bottom: 1rem">
-                  Diện tích <span><?php echo $row['DienTich']; ?></span>
+                  Diện tích <span><?php echo $row['DienTich'] . ' m²'; ?></span>
               </p>
               <p style="padding-top: 1rem; margin-bottom: 1rem">
-                  Tình trạng <span><?php 
+                  Tình trạng <span><?php
                     $db = new Database();
-                    $query = "SELECT * From hopdongthue where 
+                $query = "SELECT * From hopdongthue where
                     not visible = 2 and not CURDATE()>DATE_ADD(ngaytraphong, INTERVAL 1 DAY) 
                     and MaPhongTro={$row['MaPhongTro']} ORDER BY id DESC LIMIT 1";
-                    $res = $db->select($query);
-                    if(!$res) {
-                      echo "còn phòng"; 
-                    }else {
-                      echo "hết phòng"; 
-                    }
-                    
-                  ?></span>
+                $res = $db->select($query);
+                if (!$res) {
+                    echo 'còn phòng';
+                } else {
+                    echo 'hết phòng';
+                }
+                ?></span>
               </p>
               <a href="<?php echo $_ENV['URL']; ?>indetails?idPhongTro=<?php echo $row['MaPhongTro']; ?>&idNhaTro=<?php echo $row['MaNhaTro']; ?>" class="product__item__action">
                 <i class='bx bx-category' ></i>
@@ -71,12 +68,13 @@ class roomController
 {
     public function __invoke()
     {
-        // $roomModel = new App\Models\roomModel();
         $roomModel = new roomModel();
-        $rooms = $roomModel->getAllRooms();
+        $currentPage = $_GET['page'] ?? 1; // Current page number
+        $rooms = $roomModel->getAllRooms($currentPage);
         $roomView = new roomView();
-
         $roomView->render($rooms);
+        $pagination = $roomModel->renderPagination($currentPage);
+        echo $pagination;
     }
 }
 ?>
