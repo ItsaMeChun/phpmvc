@@ -39,8 +39,22 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
       border: 1px solid #ccc;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       display: none; /* Add this to initially hide the search results */
+      object-fit: cover;
     }
-
+    .search-results::-webkit-scrollbar{
+      width: 40px;
+      position: relative;
+      object-fit: cover;
+    }
+    .search-results::-webkit-scrollbar-thumb{
+      background-color: black;
+      background: url('https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Fjump.png?alt=media&token=dea9e6c8-fdd4-49c9-ab74-c624df6e093a') no-repeat;
+      object-fit: cover;
+    }
+    .search-results::-webkit-scrollbar-thumb:vertical{
+      height: 40px;
+      object-fit: cover;
+    }
     .search-results.show {
       display: block; /* Add this to display the search results with white background */
     }
@@ -74,12 +88,66 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');
 
+    function changeBackgroundURL(url) {
+
+    }
+
+    // Scroll event listener
+    searchResults.addEventListener('scroll', () => {
+      const scrollTop = searchResults.scrollTop;
+      const scrollHeight = searchResults.scrollHeight;
+      const clientHeight = searchResults.clientHeight;
+      const thumbElement =document.querySelector("#search-results");
+      const scrollPosition = (scrollTop / (scrollHeight - clientHeight)) * 100;
+
+      // Change the background URL based on scroll position
+      if (scrollPosition <= 50) {
+        const style = document.createElement("style");
+        style.textContent = `.search-results::-webkit-scrollbar-thumb{
+          background-color: black;
+          background: url('https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Fjump.png?alt=media&token=dea9e6c8-fdd4-49c9-ab74-c624df6e093a') no-repeat;
+          object-fit: cover;
+        }`;
+        thumbElement.appendChild(style);
+        // changeBackgroundURL('https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Fjump.png?alt=media&token=dea9e6c8-fdd4-49c9-ab74-c624df6e093a');
+      } else if (scrollPosition > 50 && scrollPosition <= 60) {
+        // thumbElement.style.backgroundImage = "";
+        const style = document.createElement("style");
+        style.textContent = `.search-results::-webkit-scrollbar-thumb{
+          background-color: black;
+          background: url('https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Fidle.png?alt=media&token=6033f4c8-a667-4ac8-b584-cd20975c8908') no-repeat;
+          object-fit: cover;
+        }`;
+        thumbElement.appendChild(style);
+      } else if (scrollPosition > 60 && scrollPosition <= 99) {
+        const style = document.createElement("style");
+        style.textContent = `.search-results::-webkit-scrollbar-thumb{
+          background-color: black;
+          background: url('https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Ffall.png?alt=media&token=740adf3b-090d-449a-8a60-c267e8ff8f17') no-repeat;
+          object-fit: cover;
+        }`;
+        thumbElement.appendChild(style);
+    } else {
+      const style = document.createElement("style");
+        style.textContent = `.search-results::-webkit-scrollbar-thumb{
+          background-color: black;
+          background: url('https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Ffallen.png?alt=media&token=6633fbab-8da6-4f65-85d8-fb1629e5f970') no-repeat;
+          object-fit: cover;
+        }`;
+        thumbElement.appendChild(style);
+      }
+    });
+
+    // Example usage
+    const initialBackgroundURL = 'url("https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Fjump.png?alt=media&token=dea9e6c8-fdd4-49c9-ab74-c624df6e093a")';
+    changeBackgroundURL(initialBackgroundURL);
+
+
     function executeSearchQuery() {
       const query = searchInput.value;
 
       if (query !== '') {
         searchResults.innerHTML = '';
-
         const xhr = new XMLHttpRequest();
         xhr.open('GET', `<?php echo $_ENV['API_URL']; ?>search?query=${query}`, true);
         xhr.onreadystatechange = function () {
