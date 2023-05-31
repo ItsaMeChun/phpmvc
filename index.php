@@ -63,6 +63,7 @@
           $roomController = new roomController();
           $roomController();
         ?>
+        </div>
       </div>
     </div>
   <?php

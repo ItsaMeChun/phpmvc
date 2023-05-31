@@ -48,7 +48,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     }
     .search-results::-webkit-scrollbar-thumb{
       background-color: black;
-      background: url('https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Fjump.png?alt=media&token=dea9e6c8-fdd4-49c9-ab74-c624df6e093a') no-repeat;
+      background: url('assets/images/jump.png') no-repeat;
       object-fit: cover;
     }
     .search-results::-webkit-scrollbar-thumb:vertical{
@@ -88,10 +88,6 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');
 
-    function changeBackgroundURL(url) {
-
-    }
-
     // Scroll event listener
     searchResults.addEventListener('scroll', () => {
       const scrollTop = searchResults.scrollTop;
@@ -105,7 +101,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
         const style = document.createElement("style");
         style.textContent = `.search-results::-webkit-scrollbar-thumb{
           background-color: black;
-          background: url('https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Fjump.png?alt=media&token=dea9e6c8-fdd4-49c9-ab74-c624df6e093a') no-repeat;
+          background: url('assets/images/jump.png') no-repeat;
           object-fit: cover;
         }`;
         thumbElement.appendChild(style);
@@ -115,7 +111,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
         const style = document.createElement("style");
         style.textContent = `.search-results::-webkit-scrollbar-thumb{
           background-color: black;
-          background: url('https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Fidle.png?alt=media&token=6033f4c8-a667-4ac8-b584-cd20975c8908') no-repeat;
+          background: url('assets/images/idle.png') no-repeat;
           object-fit: cover;
         }`;
         thumbElement.appendChild(style);
@@ -123,7 +119,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
         const style = document.createElement("style");
         style.textContent = `.search-results::-webkit-scrollbar-thumb{
           background-color: black;
-          background: url('https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Ffall.png?alt=media&token=740adf3b-090d-449a-8a60-c267e8ff8f17') no-repeat;
+          background: url('assets/images/fall.png') no-repeat;
           object-fit: cover;
         }`;
         thumbElement.appendChild(style);
@@ -131,16 +127,12 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
       const style = document.createElement("style");
         style.textContent = `.search-results::-webkit-scrollbar-thumb{
           background-color: black;
-          background: url('https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Ffallen.png?alt=media&token=6633fbab-8da6-4f65-85d8-fb1629e5f970') no-repeat;
+          background: url('assets/images/fallen.png') no-repeat;
           object-fit: cover;
         }`;
         thumbElement.appendChild(style);
       }
     });
-
-    // Example usage
-    const initialBackgroundURL = 'url("https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/stuff%2Fjump.png?alt=media&token=dea9e6c8-fdd4-49c9-ab74-c624df6e093a")';
-    changeBackgroundURL(initialBackgroundURL);
 
 
     function executeSearchQuery() {
