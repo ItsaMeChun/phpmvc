@@ -115,7 +115,7 @@ use Dotenv\Dotenv;
         {
             $this->link = new mysqli($this->host, $this->user, $this->pass, $this->dbname);
 
-            if ($this->link) {
+            if ($this->link->connect_error) {
                 $this->error = 'Connection failed' . $this->link->connect_error;
 
                 return false;

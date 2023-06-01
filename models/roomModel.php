@@ -55,20 +55,19 @@ class roomModel
         $offset = ($page - 1) * $limit; // Offset for pagination
 
         $query = "SELECT DISTINCT phongtro.*, picture.url, nhatro.DiaChi
-              FROM phongtro
-              LEFT JOIN nhatro ON nhatro.MaNhaTro = phongtro.MaNhaTro
-              LEFT JOIN hopdongthue ON hopdongthue.MaPhongTro = phongtro.MaPhongTro
-              LEFT JOIN (
-                  SELECT MaPhongTro, url
-                  FROM (
-                      SELECT MaPhongTro, url
-                      FROM picture
-                      ORDER BY RAND()
-                  ) randomized_picture
-                  GROUP BY MaPhongTro
-              ) picture ON phongtro.MaPhongTro = picture.MaPhongTro
-              LIMIT {$limit} OFFSET {$offset}";
-
+                FROM phongtro
+                LEFT JOIN nhatro ON nhatro.MaNhaTro = phongtro.MaNhaTro
+                LEFT JOIN hopdongthue ON hopdongthue.MaPhongTro = phongtro.MaPhongTro
+                LEFT JOIN (
+                    SELECT MaPhongTro, url
+                    FROM (
+                        SELECT MaPhongTro, url
+                        FROM picture
+                        ORDER BY RAND()
+                    ) randomized_picture
+                    GROUP BY MaPhongTro, url  -- Include 'url' in the GROUP BY clause
+                ) picture ON phongtro.MaPhongTro = picture.MaPhongTro
+                LIMIT {$limit} OFFSET {$offset}";
         $result = $this->db->select($query);
         if (!$result) {
             // echo 'Database Error: ' . $this->db->error;
@@ -85,17 +84,18 @@ class roomModel
 
     public function getRoom($id)
     {
-        $query = "SELECT phongtro.*, picture.id, picture.url, nhatro.DiaChi as DiaChiNhaTro 
-              FROM phongtro
-              LEFT JOIN (
-                  SELECT id, url, MaPhongTro
-                  FROM picture
-                  ORDER BY RAND() > 0 DESC
-                LIMIT 1
-              ) AS picture ON phongtro.MaPhongTro = picture.MaPhongTro
-              LEFT JOIN nhatro ON phongtro.MaNhaTro = nhatro.MaNhaTro
-              WHERE nhatro.MaNhaTro = '{$id}'
-              ORDER BY phongtro.MaPhongTro ASC";
+        $query = "SELECT phongtro.*, picture.id, picture.url, nhatro.DiaChi as DiaChiNhaTro
+                FROM phongtro
+                LEFT JOIN (
+                    SELECT id, url, MaPhongTro
+                    FROM picture
+                    ORDER BY RAND() > 0 DESC
+                    LIMIT 1
+                ) AS picture ON phongtro.MaPhongTro = picture.MaPhongTro
+                LEFT JOIN nhatro ON phongtro.MaNhaTro = nhatro.MaNhaTro
+                WHERE nhatro.MaNhaTro = '{$id}'
+                GROUP BY phongtro.MaPhongTro, picture.id, picture.url, nhatro.DiaChi
+                ORDER BY phongtro.MaPhongTro ASC";
         $result = $this->db->selectWithoutDebug($query);
         if (!$result) {
             return null;
@@ -127,13 +127,14 @@ class roomModel
 
     public function getRoomDebug($id)
     {
-        $query = "SELECT phongtro.*, picture.url, count(reviews.MaReviews) as LuotBinhLuan
-              FROM phongtro
-              left join reviews on reviews.MaPhongTro = phongtro.MaPhongTro 
-              LEFT JOIN picture ON phongtro.MaPhongTro = picture.MaPhongTro
-              WHERE phongtro.MaPhongTro = {$id}
-              ORDER BY RAND()
-              LIMIT 1";
+        $query = "SELECT phongtro.*, picture.url, COUNT(reviews.MaReviews) AS LuotBinhLuan
+                FROM phongtro
+                LEFT JOIN reviews ON reviews.MaPhongTro = phongtro.MaPhongTro
+                LEFT JOIN picture ON phongtro.MaPhongTro = picture.MaPhongTro
+                WHERE phongtro.MaPhongTro = {$id}
+                GROUP BY phongtro.MaPhongTro, picture.url
+                ORDER BY RAND()
+                LIMIT 1";
         $result = $this->db->select($query);
         if (!$result) {
             return null;

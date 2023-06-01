@@ -18,16 +18,16 @@ class motelModel
 
     public function getAllMotels($idOwner)
     {
-        $query = "SELECT nhatro.*, picture.url
-                FROM nhatro
-                LEFT JOIN phongtro ON nhatro.MaNhaTro = phongtro.MaNhaTro
-                LEFT JOIN (
-                SELECT *
-                FROM picture
-                ORDER BY RAND()
-                ) AS picture ON phongtro.MaPhongTro = picture.MaPhongTro
-                WHERE nhatro.MaChuTro = '{$idOwner}'
-                GROUP BY nhatro.MaNhaTro";
+        $query = "SELECT DISTINCT nhatro.*, picture.url
+        FROM nhatro
+        LEFT JOIN phongtro ON nhatro.MaNhaTro = phongtro.MaNhaTro
+        LEFT JOIN (
+            SELECT *
+            FROM picture
+            ORDER BY RAND()
+        ) AS picture ON phongtro.MaPhongTro = picture.MaPhongTro
+        WHERE nhatro.MaChuTro = '{$idOwner}'
+        GROUP BY nhatro.MaNhaTro, picture.url";
         $result = $this->db->select($query);
         if (!$result) {
             echo 'Database Error: ' . $this->db->error;
