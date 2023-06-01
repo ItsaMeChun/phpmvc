@@ -116,15 +116,56 @@ class roomModel
         $totalPages = ceil($totalRooms / $limit);
 
         $pagination = '<div class="pagination">';
-        for ($i = 1; $i <= $totalPages; $i++) {
-            $active = ($i == $currentPage) ? 'active' : '';
-            $pagination .= '<a href="?page=' . $i . '" class="' . $active . '">' . $i . '</a>';
+
+        // First page link
+        $pagination .= '<a href="?page=1">First</a>';
+
+        // Previous page button
+        if ($currentPage > 1) {
+            $pagination .= '<a href="?page=' . ($currentPage - 1) . '" class="prev">&lt;</a>';
         }
+
+        // Pages
+        if ($totalPages <= 5) {
+            for ($i = 1; $i <= $totalPages; $i++) {
+                $active = ($i == $currentPage) ? 'active' : '';
+                $pagination .= '<a href="?page=' . $i . '" class="' . $active . '">' . $i . '</a>';
+            }
+        } else {
+            if ($currentPage <= 3) {
+                for ($i = 1; $i <= 3; $i++) {
+                    $active = ($i == $currentPage) ? 'active' : '';
+                    $pagination .= '<a href="?page=' . $i . '" class="' . $active . '">' . $i . '</a>';
+                }
+                $pagination .= '<span class="dots">...</span>';
+            } elseif ($currentPage >= ($totalPages - 2)) {
+                $pagination .= '<span class="dots">...</span>';
+                for ($i = $totalPages - 2; $i <= $totalPages; $i++) {
+                    $active = ($i == $currentPage) ? 'active' : '';
+                    $pagination .= '<a href="?page=' . $i . '" class="' . $active . '">' . $i . '</a>';
+                }
+            } else {
+                $pagination .= '<span class="dots">...</span>';
+                for ($i = $currentPage - 1; $i <= $currentPage + 1; $i++) {
+                    $active = ($i == $currentPage) ? 'active' : '';
+                    $pagination .= '<a href="?page=' . $i . '" class="' . $active . '">' . $i . '</a>';
+                }
+                $pagination .= '<span class="dots">...</span>';
+            }
+        }
+
+        // Next page button
+        if ($currentPage < $totalPages) {
+            $pagination .= '<a href="?page=' . ($currentPage + 1) . '" class="next">&gt;</a>';
+        }
+
+        // Last page link
+        $pagination .= '<a href="?page=' . $totalPages . '">Last</a>';
+
         $pagination .= '</div>';
 
         return $pagination;
     }
-
     public function getRoomDebug($id)
     {
         $query = "SELECT phongtro.*, picture.url, count(reviews.MaReviews) as LuotBinhLuan
