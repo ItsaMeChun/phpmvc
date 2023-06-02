@@ -82,6 +82,8 @@ class userController
                     $_SESSION['user_idNum'] = $user['MaKhachTro'];
                     if (isset($_GET['rent']) && $_GET['rent'] == true) {
                         echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . 'rentalcontract?idPhongTro=' . $_GET['idPhongTro'] . '">';
+                    } else if (isset($_GET['comment']) && $_GET['comment'] == true) {
+                        echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . 'indetails?idPhongTro=' . $_GET['idPhongTro'] . ' &idNhaTro='.$_GET['idNhaTro'].'">';
                     } else {
                         echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . '">';
                     }

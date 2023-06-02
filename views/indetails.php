@@ -106,8 +106,10 @@ a.help-submit {
     <?php
       $co = new commentController();
       $co();
-      $re = new reviewController();
-      $re();?>
+      $reviews = new reviewsController();
+      $reviews();
+    ?>
+      ?>
       </div>
     </div>
 
